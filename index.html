@@ -3,130 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eshan Kavishka - Profile</title>
-    <meta name="description" content="Eshan Kavishka - WhatsApp Bot, Profile Automation & Tech Updates">
-    <meta name="keywords" content="Eshan Kavishka, WhatsApp Bot, Profile Automation, Tech Updates">
-    
+    <title>Eshan Kavishka Profile</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: rgb(244, 244, 244);
-            color: rgb(51, 51, 51);
-            margin: 0;
-            padding: 20px;
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            margin: 0; 
+            padding: 0; 
+            background: #f4f4f4;
         }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: rgb(255, 255, 255);
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+        .container { 
+            max-width: 900px; 
+            margin: 20px auto; 
+            padding: 20px; 
+            background: white; 
+            border-radius: 8px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
         }
-        .dark-mode {
-            background: rgb(34, 34, 34);
-            color: rgb(255, 255, 255);
+        h1 { color: #333; }
+        p { font-size: 18px; color: #666; }
+        .social-links { 
+            display: flex; 
+            justify-content: center; 
+            flex-wrap: wrap;
+            gap: 10px; 
+            margin-top: 15px; 
         }
-        button {
-            background: rgb(0, 123, 255);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            margin: 5px;
-            border-radius: 5px;
-            cursor: pointer;
+        .social-links a { 
+            font-size: 16px; 
+            color: white; 
+            background: #007bff; 
+            padding: 10px 15px; 
+            border-radius: 5px; 
+            text-decoration: none; 
+            transition: background 0.3s; 
         }
-        button:hover {
-            background: rgb(0, 105, 217);
-        }
-        .social-links a {
-            display: block;
-            color: rgb(0, 123, 255);
-            text-decoration: none;
-            margin: 5px 0;
-        }
-        .social-links a:hover {
-            color: rgb(0, 105, 217);
+        .social-links a:hover { background: #0056b3; }
+        .iframe-container { 
+            margin-top: 20px; 
+            width: 100%; 
+            height: 600px; 
+            border: none; 
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1 style="color: rgb(255, 69, 0);">👋 Hi, I'm Eshan Kavishka</h1>
-    <p style="color: rgb(0, 150, 136);">🚀 Tech Enthusiast | WhatsApp Bot Developer | Content Creator</p>
-    <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+    <div class="container">
+        <h1>Eshan Kavishka Profile</h1>
+        <p>Automate your WhatsApp profile updates with our bot!</p>
+        
+        <h3>Contact & Social Media</h3>
+        <div class="social-links">
+            <a href="mailto:Fire2killsl@gmail.com">Email</a>
+            <a href="https://wa.me/94758178340">WhatsApp 1</a>
+            <a href="https://wa.me/94789119916">WhatsApp 2</a>
+            <a href="https://youtube.com/@eshantechnic1?si=OVtYiJoHAYFlNve2">YouTube</a>
+            <a href="https://www.tiktok.com/@eshu_nvrdie_official">TikTok</a>
+            <a href="https://levanter-pp.vercel.app/">Levanter PP</a>
+            <a href="https://eshan-kavishka-pp.vercel.app/">Eshan-Kavishka-PP</a>
+        </div>
 
-    <h3 style="color: rgb(255, 165, 0);">🌐 Connect with Me</h3>
-    <div class="social-links">
-        <a href="mailto:Fire2killsl@gmail.com">📧 Email</a>
-        <a href="https://wa.me/94758178340">📱 WhatsApp 1</a>
-        <a href="https://wa.me/94789119916">📱 WhatsApp 2</a>
-        <a href="https://youtube.com/@eshantechnic1">🎥 YouTube</a>
-        <a href="https://www.tiktok.com/@eshu_nvrdie_official">🎵 TikTok</a>
-        <a href="https://eshan-kavishka-pp-vercel.app/">🌍 Website</a>
+        <h3>Levanter PP Preview</h3>
+        <iframe class="iframe-container" src="https://levanter-pp.vercel.app/" allowfullscreen></iframe>
     </div>
-
-    <h3 style="color: rgb(139, 0, 255);">📌 QR Code for Website</h3>
-    <div id="qrcode"></div>
-
-    <h3 style="color: rgb(0, 191, 255);">📶 Network Status</h3>
-    <p id="status">Checking connection...</p>
-
-    <h3 style="color: rgb(50, 205, 50);">🗺️ Your Location</h3>
-    <div id="map" style="height: 300px; width: 100%;"></div>
-
-    <h3 style="color: rgb(255, 69, 0);">🎵 Background Music</h3>
-    <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
-    <button onclick="toggleMusic()">Play/Pause Music</button>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script>
-    // Dark Mode Toggle with Local Storage
-    function toggleDarkMode() {
-        document.body.classList.toggle("dark-mode");
-        localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
-    }
-    if (localStorage.getItem("darkMode") === "true") {
-        document.body.classList.add("dark-mode");
-    }
-
-    // QR Code Generation
-    new QRCode(document.getElementById("qrcode"), "https://eshan-kavishka-pp-vercel.app/");
-
-    // Network Status Detection
-    function updateStatus() {
-        document.getElementById("status").innerText = navigator.onLine ? "✅ Online" : "❌ Offline";
-    }
-    window.addEventListener("online", updateStatus);
-    window.addEventListener("offline", updateStatus);
-    updateStatus();
-
-    // Geolocation with Error Handling
-    function loadMap() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                position => {
-                    document.getElementById("map").innerHTML = `<iframe width="100%" height="300" src="https://maps.google.com/maps?q=${position.coords.latitude},${position.coords.longitude}&z=15&output=embed"></iframe>`;
-                },
-                error => {
-                    document.getElementById("map").innerHTML = "❌ Location access denied.";
-                }
-            );
-        } else {
-            document.getElementById("map").innerHTML = "❌ Geolocation is not supported by this browser.";
-        }
-    }
-    loadMap();
-
-    // Music Player Toggle
-    function toggleMusic() {
-        const music = document.getElementById("bgMusic");
-        music.paused ? music.play() : music.pause();
-    }
-</script>
 </body>
-  </html>
+</html>
