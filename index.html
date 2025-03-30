@@ -3,68 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eshan Kavishka Profile</title>
+    <title>Eshan Kavishka - Profile</title>
+    <meta name="description" content="Eshan Kavishka - WhatsApp Bot, Profile Automation & Tech Updates">
+    <meta name="keywords" content="Eshan Kavishka, WhatsApp Bot, Profile Automation, Tech Updates">
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            text-align: center; 
-            margin: 0; 
-            padding: 0; 
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
             background: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
         }
-        .container { 
-            max-width: 900px; 
-            margin: 20px auto; 
-            padding: 20px; 
-            background: white; 
-            border-radius: 8px; 
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
-        h1 { color: #333; }
-        p { font-size: 18px; color: #666; }
-        .social-links { 
-            display: flex; 
-            justify-content: center; 
-            flex-wrap: wrap;
-            gap: 10px; 
-            margin-top: 15px; 
+        .section {
+            margin: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
         }
-        .social-links a { 
-            font-size: 16px; 
-            color: white; 
-            background: #007bff; 
-            padding: 10px 15px; 
-            border-radius: 5px; 
-            text-decoration: none; 
-            transition: background 0.3s; 
+        .social-links a {
+            display: block;
+            margin: 5px;
+            text-decoration: none;
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            transition: 0.3s;
         }
-        .social-links a:hover { background: #0056b3; }
-        .iframe-container { 
-            margin-top: 20px; 
-            width: 100%; 
-            height: 600px; 
-            border: none; 
+        .social-links a:hover {
+            background: #0056b3;
+        }
+        .chatbot button {
+            background: #ff6600;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .chatbot button:hover {
+            background: #cc5200;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Eshan Kavishka Profile</h1>
-        <p>Automate your WhatsApp profile updates with our bot!</p>
-        
-        <h3>Contact & Social Media</h3>
-        <div class="social-links">
-            <a href="mailto:Fire2killsl@gmail.com">Email</a>
-            <a href="https://wa.me/94758178340">WhatsApp 1</a>
-            <a href="https://wa.me/94789119916">WhatsApp 2</a>
-            <a href="https://youtube.com/@eshantechnic1?si=OVtYiJoHAYFlNve2">YouTube</a>
-            <a href="https://www.tiktok.com/@eshu_nvrdie_official">TikTok</a>
-            <a href="https://levanter-pp.vercel.app/">Levanter PP</a>
-            <a href="https://eshan-kavishka-pp.vercel.app/">Eshan-Kavishka-PP</a>
-        </div>
 
-        <h3>Levanter PP Preview</h3>
-        <iframe class="iframe-container" src="https://levanter-pp.vercel.app/" allowfullscreen></iframe>
+<div class="container">
+    <h1>👋 Hi, I'm Eshan Kavishka</h1>
+    <p>🚀 Tech Enthusiast | WhatsApp Bot Developer | Content Creator</p>
+
+    <!-- 🕒 Live Time -->
+    <div class="section">Current Time: <span id="time"></span></div>
+
+    <!-- 🌤 Weather Info -->
+    <div class="section">Weather: <span id="weather">Loading...</span></div>
+
+    <!-- 📱 Device Info -->
+    <div class="section">Device Info: <span id="device"></span></div>
+
+    <!-- 🌐 Social Media -->
+    <h3>🌐 Connect with Me</h3>
+    <div class="social-links">
+        <a href="mailto:Fire2killsl@gmail.com">📧 Email</a>
+        <a href="https://wa.me/94758178340">📱 WhatsApp 1</a>
+        <a href="https://wa.me/94789119916">📱 WhatsApp 2</a>
+        <a href="https://youtube.com/@eshantechnic1">🎥 YouTube</a>
+        <a href="https://www.tiktok.com/@eshu_nvrdie_official">🎵 TikTok</a>
+        <a href="https://eshan-kavishka-pp-vercel.app/">🌍 Website</a>
     </div>
+
+    <!-- 🤖 Chatbot -->
+    <div class="chatbot">
+        <h3>💬 Chat with EshanBot</h3>
+        <button onclick="startChat()">Start Chat</button>
+    </div>
+</div>
+
+<script>
+    // 🕒 Live Time Function
+    function updateTime() {
+        let now = new Date();
+        document.getElementById("time").innerText = now.toLocaleTimeString();
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    // 🌤 Fetch Weather Data (Using OpenWeather API)
+    async function fetchWeather() {
+        const apiKey = "YOUR_API_KEY";  // Replace with your OpenWeatherMap API Key
+        const city = "Colombo";  // Change if needed
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            document.getElementById("weather").innerText = `${data.weather[0].description}, ${data.main.temp}°C`;
+        } catch (error) {
+            document.getElementById("weather").innerText = "Weather not available.";
+        }
+    }
+    fetchWeather();
+
+    // 📱 Device Info
+    function getDeviceInfo() {
+        const userAgent = navigator.userAgent;
+        const screenWidth = window.screen.width;
+        const screenHeight = window.screen.height;
+        document.getElementById("device").innerText = `${userAgent} | ${screenWidth}x${screenHeight}`;
+    }
+    getDeviceInfo();
+
+    // 🤖 Open Chatbot
+    function startChat() {
+        window.open("https://your-chatbot-link.com", "_blank"); // Change this link to your chatbot URL
+    }
+</script>
+
 </body>
 </html>
