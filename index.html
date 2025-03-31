@@ -316,3 +316,45 @@
 
 </body>
 </html>
+const puppeteer = require('puppeteer'); const path = require('path'); const express = require('express'); const multer = require('multer'); const app = express(); const port = 3000;
+
+// Set up multer for file uploads const storage = multer.diskStorage({ destination: './uploads/', filename: (req, file, cb) => { cb(null, 'profile.jpg'); } }); const upload = multer({ storage: storage });
+
+app.use(express.static('public')); app.post('/upload', upload.single('image'), (req, res) => { res.send('File uploaded successfully!'); });
+
+app.get('/update-profile', async (req, res) => { const browser = await puppeteer.launch({ headless: false }); const page = await browser.newPage();
+
+// Open WhatsApp Web
+await page.goto('https://web.whatsapp.com');
+console.log('Scan the QR code to log in...');
+
+// Wait for login
+await page.waitForSelector('canvas', { timeout: 60000 });
+console.log('Logged in!');
+
+// Open settings
+await page.waitForSelector("span[data-icon='menu']");
+await page.click("span[data-icon='menu']");
+await page.waitForSelector("span[title='Settings']");
+await page.click("span[title='Settings']");
+
+// Click on profile picture
+await page.waitForSelector("img[alt='Your profile photo']");
+await page.click("img[alt='Your profile photo']");
+
+// Click change photo
+await page.waitForSelector("div[role='button']:nth-child(2)");
+await page.click("div[role='button']:nth-child(2)");
+
+// Upload image
+const imageInput = await page.$("input[type='file']");
+const imagePath = path.resolve(__dirname, 'uploads/profile.jpg');
+await imageInput.uploadFile(imagePath);
+
+console.log('Image uploaded! Click Save manually.');
+res.send('Profile picture updated!');
+
+});
+
+app.listen(port, () => { console.log(Server running at http://localhost:${port}); });
+
