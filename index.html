@@ -171,6 +171,7 @@
         const formData = new FormData();
         formData.append("file", imageFile);
 
+        // Upload image to your hosting (example using IMGBB API)
         const uploadResponse = await fetch("https://api.imgbb.com/1/upload?key=YOUR_API_KEY", {
             method: "POST",
             body: formData
@@ -183,7 +184,26 @@
         }
 
         const imageUrl = uploadData.data.url;
-        alert(`Image uploaded! Send this URL to WhatsApp: ${imageUrl}`);
+
+        // Send image to WhatsApp (example using Levanter API)
+        const levanterApiUrl = 'https://levanter-pp.vercel.app/whatsapp'; // Levanter API URL
+        const response = await fetch(levanterApiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                phoneNumber: phoneNumber,
+                imageUrl: imageUrl
+            })
+        });
+
+        const responseData = await response.json();
+        if (responseData.success) {
+            alert('Profile Picture updated successfully!');
+        } else {
+            alert('Failed to update profile picture!');
+        }
     }
 </script>
 
