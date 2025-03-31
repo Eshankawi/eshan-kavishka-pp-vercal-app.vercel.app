@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eshan Kavishka Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         :root {
             --bg-color: #ffffff;
@@ -14,6 +16,7 @@
             --button-bg: #28a745;
             --button-hover: #218838;
         }
+
         [data-theme="dark"] {
             --bg-color: #121212;
             --container-bg: rgba(30, 30, 30, 0.9);
@@ -25,14 +28,15 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
-            background: var(--bg-color);
+            background: linear-gradient(135deg, #f06, #4a90e2);
             color: var(--text-color);
             transition: background 0.3s, color 0.3s;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         .container {
@@ -40,28 +44,21 @@
             margin: 20px auto;
             padding: 20px;
             background: var(--container-bg);
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             transition: background 0.3s;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
         }
 
-        /* RGB Light Animation */
-        @keyframes rgb-light {
-            0% { color: red; }
-            14% { color: yellow; }
-            28% { color: green; }
-            42% { color: cyan; }
-            57% { color: blue; }
-            71% { color: magenta; }
-            85% { color: orange; }
-            100% { color: red; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         h1, h3, p {
-            font-size: 24px;
-            font-weight: bold;
-            animation: rgb-light 3s infinite;
+            color: var(--text-color);
         }
 
         .social-links {
@@ -85,6 +82,7 @@
         .social-links a:hover {
             background: var(--link-hover);
             transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .theme-toggle {
@@ -96,12 +94,13 @@
             color: white;
             font-size: 14px;
             border-radius: 5px;
-            transition: background 0.3s, transform 0.2s;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
         }
 
         .theme-toggle:hover {
             background: var(--button-hover);
             transform: scale(1.1);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .iframe-container {
@@ -157,6 +156,28 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             display: none;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .upload-container img:hover {
+            transform: scale(1.1);
+        }
+
+        .fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff4081;
+            border-radius: 50%;
+            padding: 15px;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .fab:hover {
+            transform: scale(1.2);
         }
 
         @media (max-width: 768px) {
@@ -184,12 +205,12 @@
 
     <h3>Contact & Social Media</h3>
     <div class="social-links">
-        <a href="mailto:Fire2killsl@gmail.com">📧 Email</a>
-        <a href="https://wa.me/94758178340">📱 WhatsApp 1</a>
-        <a href="https://wa.me/94789119916">📱 WhatsApp 2</a>
-        <a href="https://youtube.com/@eshantechnic1">🎥 YouTube</a>
-        <a href="https://www.tiktok.com/@eshu_nvrdie_official">🎵 TikTok</a>
-        <a href="https://eshan-kavishka-pp-vercal-app.vercel.app/">🌍 Website</a>
+        <a href="mailto:Fire2killsl@gmail.com" class="social-icon"><i class="fas fa-envelope"></i> 📧 Email</a>
+        <a href="https://wa.me/94758178340" class="social-icon"><i class="fab fa-whatsapp"></i> 📱 WhatsApp 1</a>
+        <a href="https://wa.me/94789119916" class="social-icon"><i class="fab fa-whatsapp"></i> 📱 WhatsApp 2</a>
+        <a href="https://youtube.com/@eshantechnic1" class="social-icon"><i class="fab fa-youtube"></i> 🎥 YouTube</a>
+        <a href="https://www.tiktok.com/@eshu_nvrdie_official" class="social-icon"><i class="fab fa-tiktok"></i> 🎵 TikTok</a>
+        <a href="https://eshan-kavishka-pp-vercal-app.vercel.app/" class="social-icon"><i class="fas fa-globe"></i> 🌍 Website</a>
     </div>
 
     <h3>🎥 Eshan Kavishka PP Logging ☟</h3>
@@ -204,7 +225,6 @@
         <source src="your-music-file.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Upload and Number Input Section -->
     <div class="upload-container">
         <input type="file" id="image-upload" accept="image/*" onchange="previewImage(event)" />
         <input type="number" id="phone-number" placeholder="Enter WhatsApp Number (Ex: 947XXXXXXXX)" />
@@ -212,6 +232,8 @@
         <img id="image-preview" src="" alt="Image Preview" />
     </div>
 </div>
+
+<button class="fab" onclick="window.scrollTo(0, 0)">↑</button>
 
 <script>
     function setTheme(theme) {
@@ -297,4 +319,4 @@
 </script>
 
 </body>
-</html>
+            </html>
