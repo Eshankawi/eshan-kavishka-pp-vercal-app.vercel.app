@@ -269,3 +269,57 @@
 </script>
 </body>
 </html>
+const express = require("express"); const multer = require("multer"); const puppeteer = require("puppeteer"); const fs = require("fs"); const path = require("path");
+
+const app = express(); const port = 3000;
+
+// Multer setup for image upload const upload = multer({ dest: "uploads/" });
+
+app.use(express.json()); app.use(express.urlencoded({ extended: true }));
+
+app.post("/upload", upload.single("image"), async (req, res) => { const phoneNumber = req.body.phone; const imagePath = req.file.path;
+
+if (!phoneNumber || !imagePath) {
+    return res.status(400).json({ error: "Phone number and image are required" });
+}
+
+try {
+    const browser = await puppeteer.launch({ headless: false });
+    const page = await browser.newPage();
+    await page.goto("https://web.whatsapp.com");
+
+    console.log("Scan QR code to login");
+    await new Promise(resolve => setTimeout(resolve, 15000)); // Wait for QR scan
+
+    // Navigate to profile settings
+    await page.click("div[title='Menu']");
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    await page.click("span[data-testid='settings']");
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    await page.click("span[data-testid='profile-photo']");
+
+    // Upload new profile picture
+    const [fileChooser] = await Promise.all([
+        page.waitForFileChooser(),
+        page.click("span[data-testid='pencil']"),
+    ]);
+    await fileChooser.accept([path.resolve(imagePath)]);
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    await page.click("span[data-testid='checkmark']");
+
+    console.log("Profile picture updated successfully");
+    await browser.close();
+    res.json({ success: "Profile picture updated" });
+} catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Failed to update profile picture" });
+}
+
+// Delete uploaded file after use
+fs.unlinkSync(imagePath);
+
+});
+
+app.listen(port, () => { console.log(Server running on http://localhost:${port}); });
+
+
