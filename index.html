@@ -5,128 +5,314 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eshan Kavishka Profile</title>
     <style>
-        /* Add styles for all sections as per the design */
-        /* Include your original styles here */
+        :root {
+            --bg-color: #ffffff;
+            --container-bg: rgba(255, 255, 255, 0.9);
+            --text-color: #000000;
+            --link-bg: #007bff;
+            --link-hover: #0056b3;
+            --button-bg: #28a745;
+            --button-hover: #218838;
+        }
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --container-bg: rgba(30, 30, 30, 0.9);
+            --text-color: #ffffff;
+            --link-bg: #4CAF50;
+            --link-hover: #45a049;
+            --button-bg: #007bff;
+            --button-hover: #0056b3;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: background 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: var(--container-bg);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: background 0.3s;
+        }
+
+        /* RGB Light Animation */
+        @keyframes rgb-light {
+            0% { color: red; }
+            14% { color: yellow; }
+            28% { color: green; }
+            42% { color: cyan; }
+            57% { color: blue; }
+            71% { color: magenta; }
+            85% { color: orange; }
+            100% { color: red; }
+        }
+
+        h1, h3, p {
+            font-size: 24px;
+            font-weight: bold;
+            animation: rgb-light 3s infinite;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            font-size: 16px;
+            color: white;
+            background: var(--link-bg);
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .social-links a:hover {
+            background: var(--link-hover);
+            transform: scale(1.1);
+        }
+
+        .theme-toggle {
+            margin-top: 10px;
+            cursor: pointer;
+            padding: 10px;
+            border: none;
+            background: var(--button-bg);
+            color: white;
+            font-size: 14px;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--button-hover);
+            transform: scale(1.1);
+        }
+
+        .iframe-container {
+            margin-top: 20px;
+            width: 100%;
+            height: 600px;
+            border: none;
+            overflow: hidden;
+        }
+
+        marquee {
+            font-size: 18px;
+            font-weight: bold;
+            color: red;
+        }
+
+        .visitor-count {
+            font-size: 18px;
+            font-weight: bold;
+            color: green;
+        }
+
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .upload-container input,
+        .upload-container button {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .upload-container input[type="file"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .upload-container input[type="number"] {
+            width: 100%;
+            max-width: 200px;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .upload-container img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .social-links a {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+
+            .upload-container input,
+            .upload-container button {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
+
 <div class="container">
     <h1>Eshan Kavishka Profile Full Picture</h1>
     <p>🚀 Automate your WhatsApp profile updates with our bot!</p>
+
     <marquee behavior="scroll" direction="left">🔥 Welcome to Eshan Kavishka's Profile Website! 🎉</marquee>
 
-    <!-- Bot Deploying Section -->
-    <div class="section bot-deploy">
-        <h3>🤖 Bot Deploying</h3>
-        <p>Automate your WhatsApp profile with our bot.</p>
-        <div class="upload-container">
-            <input type="file" id="image-upload" accept="image/*" onchange="previewImage(event)" />
-            <input type="number" id="phone-number" placeholder="Enter WhatsApp Number (Ex: 947XXXXXXXX)" />
-            <button onclick="submitData()">Submit</button>
-            <img id="image-preview" src="" alt="Image Preview" />
-        </div>
-        <script>
-            // Image Preview and Upload Script
-            function previewImage(event) {
-                const file = event.target.files[0];
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById("image-preview").src = e.target.result;
-                    document.getElementById("image-preview").style.display = "block";
-                };
-                reader.readAsDataURL(file);
-            }
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark/Light Mode</button>
 
-            async function submitData() {
-                const phoneNumber = document.getElementById("phone-number").value;
-                const imageFile = document.getElementById("image-upload").files[0];
-
-                if (!phoneNumber || !imageFile) {
-                    alert("Please enter a phone number and upload an image!");
-                    return;
-                }
-
-                const formData = new FormData();
-                formData.append("file", imageFile);
-
-                const uploadResponse = await fetch("https://api.imgbb.com/1/upload?key=YOUR_API_KEY", {
-                    method: "POST",
-                    body: formData
-                });
-
-                const uploadData = await uploadResponse.json();
-                if (!uploadData.success) {
-                    alert("Failed to upload image!");
-                    return;
-                }
-
-                const imageUrl = uploadData.data.url;
-                alert(`Image uploaded! Send this URL to WhatsApp: ${imageUrl}`);
-            }
-        </script>
+    <h3>Contact & Social Media</h3>
+    <div class="social-links">
+        <a href="mailto:Fire2killsl@gmail.com">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Google_Gmail_logo_2020.svg" alt="Email" width="24" height="24" />
+            📧 Email
+        </a>
+        <a href="https://wa.me/94758178340">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp 1" width="24" height="24" />
+            📱 WhatsApp 1
+        </a>
+        <a href="https://wa.me/94789119916">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp 2" width="24" height="24" />
+            📱 WhatsApp 2
+        </a>
+        <a href="https://youtube.com/@eshantechnic1">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" width="24" height="24" />
+            🎥 YouTube
+        </a>
+        <a href="https://www.tiktok.com/@eshu_nvrdie_official">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/TikTok_logo_2021.svg" alt="TikTok" width="24" height="24" />
+            🎵 TikTok
+        </a>
+        <a href="https://eshan-kavishka-pp-vercal-app.vercel.app/">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d2/Logo_of_Vercel.svg" alt="Vercel" width="24" height="24" />
+            🌍 Website
+        </a>
     </div>
 
-    <!-- Web Designer Section -->
-    <div class="section web-designer">
-        <h3>🎨 Web Designer</h3>
-        <p>Looking for creative and modern web designs for your business?</p>
-        <div class="portfolio">
-            <div class="portfolio-item">
-                <img src="web-design1.jpg" alt="Web Design 1">
-                <p>Modern E-commerce Website</p>
-            </div>
-            <div class="portfolio-item">
-                <img src="web-design2.jpg" alt="Web Design 2">
-                <p>Professional Business Website</p>
-            </div>
-            <div class="portfolio-item">
-                <img src="web-design3.jpg" alt="Web Design 3">
-                <p>Personal Portfolio Website</p>
-            </div>
-        </div>
-    </div>
+    <h3>🎥 Eshan Kavishka PP Logging ☟</h3>
+    <iframe class="iframe-container" src="https://levanter-pp.vercel.app/" scrolling="no"></iframe>
 
-    <!-- Sport Section -->
-    <div class="section sport">
-        <h3>⚽ Sport</h3>
-        <p>Get the latest updates, scores, and highlights from your favorite sports.</p>
-        <div class="news">
-            <h4>Latest Sports News</h4>
-            <p>Get the latest news and scores in the world of sports. Stay updated with everything from football to cricket.</p>
-            <ul>
-                <li>Football World Cup updates</li>
-                <li>Cricket Asia Cup results</li>
-                <li>Basketball NBA highlights</li>
-            </ul>
-        </div>
-    </div>
+    <p class="visitor-count">👥 Visitors Online: <span id="visitor-count">0</span></p>
 
-    <!-- Contact & Social Media Section -->
-    <div class="section contact-social">
-        <h3>📱 Contact & Social Media</h3>
-        <p>Stay connected with me through various platforms.</p>
-        <div class="social-links">
-            <a href="mailto:Fire2killsl@gmail.com" target="_blank">
-                <img src="email-icon.png" alt="Email Icon"> 📧 Email
-            </a>
-            <a href="https://wa.me/94758178340" target="_blank">
-                <img src="whatsapp-icon.png" alt="WhatsApp Icon"> 📱 WhatsApp 1
-            </a>
-            <a href="https://wa.me/94789119916" target="_blank">
-                <img src="whatsapp-icon.png" alt="WhatsApp Icon"> 📱 WhatsApp 2
-            </a>
-            <a href="https://youtube.com/@eshantechnic1" target="_blank">
-                <img src="youtube-icon.png" alt="YouTube Icon"> 🎥 YouTube
-            </a>
-            <a href="https://www.tiktok.com/@eshu_nvrdie_official" target="_blank">
-                <img src="tiktok-icon.png" alt="TikTok Icon"> 🎵 TikTok
-            </a>
-            <a href="https://eshan-kavishka-pp-vercal-app.vercel.app/" target="_blank">
-                <img src="website-icon.png" alt="Website Icon"> 🌍 Website
-            </a>
-        </div>
-    </div>
+    <p>🎉 Special Event Countdown: <span id="countdown"></span></p>
 
+    <button onclick="toggleMusic()">🔊 Play/Pause Music</button>
+    <audio id="bg-music" loop>
+        <source src="your-music-file.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Upload and Number Input Section -->
+    <div class="upload-container">
+        <input type="file" id="image-upload" accept="image/*" onchange="previewImage(event)" />
+        <input type="number" id="phone-number" placeholder="Enter WhatsApp Number (Ex: 947XXXXXXXX)" />
+        <button onclick="submitData()">Submit</button>
+        <img id="image-preview" src="" alt="Image Preview" />
+    </div>
 </div>
+
+<script>
+    function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    }
+
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute("data-theme");
+        setTheme(currentTheme === "dark" ? "light" : "dark");
+    }
+
+    (function () {
+        const savedTheme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        setTheme(savedTheme);
+    })();
+
+    function updateVisitorCount() {
+        fetch("https://api.countapi.xyz/hit/eshan-kavishka/visits")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("visitor-count").innerText = data.value;
+            });
+    }
+    updateVisitorCount();
+
+    function toggleMusic() {
+        var audio = document.getElementById("bg-music");
+        audio.paused ? audio.play() : audio.pause();
+    }
+
+    var eventDate = new Date("2025-01-01T00:00:00").getTime();
+    var timer = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = eventDate - now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        if (distance < 0) {
+            clearInterval(timer);
+            document.getElementById("countdown").innerHTML = "🎉 Event Started!";
+        }
+    }, 1000);
+
+    function previewImage(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById("image-preview").src = e.target.result;
+            document.getElementById("image-preview").style.display = "block";
+        };
+        reader.readAsDataURL(file);
+    }
+
+    async function submitData() {
+        const phoneNumber = document.getElementById("phone-number").value;
+        const imageFile = document.getElementById("image-upload").files[0];
+
+        if (!phoneNumber || !imageFile) {
+            alert("Please enter a phone number and upload an image!");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("file", imageFile);
+
+        const uploadResponse = await fetch("https://api.imgbb.com/1/upload?key=YOUR_API_KEY", {
+            method: "POST",
+            body: formData
+        });
+
+        const uploadData = await uploadResponse.json();
+        if (!uploadData.success) {
+            alert("Failed to upload image!");
+            return;
+        }
+
+        const imageUrl = uploadData.data.url;
+        alert(`Image uploaded! Send this URL to WhatsApp: ${imageUrl}`);
+    }
+</script>
+
 </body>
 </html>
