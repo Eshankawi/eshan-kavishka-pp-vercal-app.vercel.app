@@ -171,7 +171,6 @@
         const formData = new FormData();
         formData.append("file", imageFile);
 
-        // Upload image to your hosting (example using IMGBB API)
         const uploadResponse = await fetch("https://api.imgbb.com/1/upload?key=YOUR_API_KEY", {
             method: "POST",
             body: formData
@@ -184,13 +183,13 @@
         }
 
         const imageUrl = uploadData.data.url;
+        alert(`Image uploaded! Now updating WhatsApp profile...`);
 
-        // Send image to WhatsApp (example using Levanter API)
-        const levanterApiUrl = 'https://levanter-pp.vercel.app/whatsapp'; // Levanter API URL
-        const response = await fetch(levanterApiUrl, {
-            method: 'POST',
+        // Call to the API that automates WhatsApp profile picture update
+        const response = await fetch("https://your-whatsapp-api.com/update-profile", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 phoneNumber: phoneNumber,
@@ -198,75 +197,14 @@
             })
         });
 
-        const responseData = await response.json();
-        if (responseData.success) {
-            alert('Profile Picture updated successfully!');
+        const data = await response.json();
+        if (data.success) {
+            alert("WhatsApp profile picture updated successfully!");
         } else {
-            alert('Failed to update profile picture!');
+            alert("Failed to update WhatsApp profile.");
         }
     }
 </script>
 
 </body>
 </html>
-<script>
-    async function submitData() {
-        const phoneNumber = document.getElementById("phone-number").value;
-        const imageFile = document.getElementById("image-upload").files[0];
-
-        if (!phoneNumber || !imageFile) {
-            alert("Please enter a phone number and upload an image!");
-            return;
-        }
-
-        // Prepare image upload to hosting service (e.g., IMGBB)
-        const formData = new FormData();
-        formData.append("file", imageFile);
-
-        try {
-            const uploadResponse = await fetch("https://api.imgbb.com/1/upload?key=YOUR_API_KEY", {
-                method: "POST",
-                body: formData
-            });
-
-            const uploadData = await uploadResponse.json();
-
-            if (!uploadData.success) {
-                console.error("Image Upload Failed:", uploadData);
-                alert("Failed to upload image!");
-                return;
-            }
-
-            const imageUrl = uploadData.data.url;
-
-            // Log image URL and phone number for debugging
-            console.log("Image uploaded successfully:", imageUrl);
-            console.log("Phone Number:", phoneNumber);
-
-            // Sending to Levanter API to update WhatsApp profile picture
-            const levanterApiUrl = 'https://levanter-pp.vercel.app/whatsapp'; // Levanter API URL
-            const response = await fetch(levanterApiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    phoneNumber: phoneNumber,
-                    imageUrl: imageUrl
-                })
-            });
-
-            const responseData = await response.json();
-            console.log("Levanter API Response:", responseData); // Debugging response
-
-            if (responseData.success) {
-                alert('Profile Picture updated successfully!');
-            } else {
-                alert('Failed to update profile picture!');
-            }
-        } catch (error) {
-            console.error("Error:", error); // Catch any network or other errors
-            alert("An error occurred. Please try again later.");
-        }
-    }
-</script>
