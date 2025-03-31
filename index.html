@@ -46,8 +46,22 @@
             transition: background 0.3s;
         }
 
+        /* RGB Light Animation */
+        @keyframes rgb-light {
+            0% { color: red; }
+            14% { color: yellow; }
+            28% { color: green; }
+            42% { color: cyan; }
+            57% { color: blue; }
+            71% { color: magenta; }
+            85% { color: orange; }
+            100% { color: red; }
+        }
+
         h1, h3, p {
-            color: var(--text-color);
+            font-size: 24px;
+            font-weight: bold;
+            animation: rgb-light 3s infinite;
         }
 
         .social-links {
@@ -283,4 +297,4 @@
 </script>
 
 </body>
-    </html>
+</html>
