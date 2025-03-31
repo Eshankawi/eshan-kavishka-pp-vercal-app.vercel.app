@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eshan Kavishka Profile</title>
     <style>
+        /* General styles */
         :root {
             --bg-color: #ffffff;
             --container-bg: rgba(255, 255, 255, 0.9);
@@ -46,7 +47,12 @@
             transition: background 0.3s;
         }
 
-        /* RGB Light Animation */
+        h1, h3, p {
+            font-size: 24px;
+            font-weight: bold;
+            animation: rgb-light 3s infinite;
+        }
+
         @keyframes rgb-light {
             0% { color: red; }
             14% { color: yellow; }
@@ -56,12 +62,6 @@
             71% { color: magenta; }
             85% { color: orange; }
             100% { color: red; }
-        }
-
-        h1, h3, p {
-            font-size: 24px;
-            font-weight: bold;
-            animation: rgb-light 3s infinite;
         }
 
         .social-links {
@@ -124,41 +124,7 @@
             color: green;
         }
 
-        .upload-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .upload-container input,
-        .upload-container button {
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        .upload-container input[type="file"] {
-            padding: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .upload-container input[type="number"] {
-            width: 100%;
-            max-width: 200px;
-            padding: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .upload-container img {
-            max-width: 100%;
-            height: auto;
-            margin-top: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: none;
-        }
-
+        /* Mobile responsiveness */
         @media (max-width: 768px) {
             .social-links a {
                 font-size: 14px;
@@ -170,6 +136,35 @@
                 width: 100%;
             }
         }
+
+        /* Portfolio, Testimonial and About Section */
+        .section {
+            margin-top: 40px;
+        }
+
+        .testimonial, .portfolio, .about {
+            padding: 20px;
+            background-color: var(--container-bg);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-item {
+            display: inline-block;
+            width: 30%;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .testimonial p {
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -177,57 +172,60 @@
 <div class="container">
     <h1>Eshan Kavishka Profile Full Picture</h1>
     <p>🚀 Automate your WhatsApp profile updates with our bot!</p>
-
     <marquee behavior="scroll" direction="left">🔥 Welcome to Eshan Kavishka's Profile Website! 🎉</marquee>
-
     <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark/Light Mode</button>
 
+    <!-- Social Links with Images -->
     <h3>Contact & Social Media</h3>
     <div class="social-links">
-        <a href="mailto:Fire2killsl@gmail.com">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Google_Gmail_logo_2020.svg" alt="Email" width="24" height="24" />
-            📧 Email
-        </a>
-        <a href="https://wa.me/94758178340">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp 1" width="24" height="24" />
-            📱 WhatsApp 1
-        </a>
-        <a href="https://wa.me/94789119916">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp 2" width="24" height="24" />
-            📱 WhatsApp 2
-        </a>
-        <a href="https://youtube.com/@eshantechnic1">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" width="24" height="24" />
-            🎥 YouTube
-        </a>
-        <a href="https://www.tiktok.com/@eshu_nvrdie_official">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/TikTok_logo_2021.svg" alt="TikTok" width="24" height="24" />
-            🎵 TikTok
-        </a>
-        <a href="https://eshan-kavishka-pp-vercal-app.vercel.app/">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d2/Logo_of_Vercel.svg" alt="Vercel" width="24" height="24" />
-            🌍 Website
-        </a>
+        <a href="mailto:Fire2killsl@gmail.com"><img src="email-icon.png" alt="Email"> 📧 Email</a>
+        <a href="https://wa.me/94758178340"><img src="whatsapp-icon.png" alt="WhatsApp 1"> 📱 WhatsApp 1</a>
+        <a href="https://wa.me/94789119916"><img src="whatsapp-icon.png" alt="WhatsApp 2"> 📱 WhatsApp 2</a>
+        <a href="https://youtube.com/@eshantechnic1"><img src="youtube-icon.png" alt="YouTube"> 🎥 YouTube</a>
+        <a href="https://www.tiktok.com/@eshu_nvrdie_official"><img src="tiktok-icon.png" alt="TikTok"> 🎵 TikTok</a>
+        <a href="https://eshan-kavishka-pp-vercal-app.vercel.app/"><img src="website-icon.png" alt="Website"> 🌍 Website</a>
     </div>
 
     <h3>🎥 Eshan Kavishka PP Logging ☟</h3>
     <iframe class="iframe-container" src="https://levanter-pp.vercel.app/" scrolling="no"></iframe>
 
     <p class="visitor-count">👥 Visitors Online: <span id="visitor-count">0</span></p>
-
     <p>🎉 Special Event Countdown: <span id="countdown"></span></p>
 
+    <!-- Music Toggle -->
     <button onclick="toggleMusic()">🔊 Play/Pause Music</button>
     <audio id="bg-music" loop>
         <source src="your-music-file.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Upload and Number Input Section -->
-    <div class="upload-container">
-        <input type="file" id="image-upload" accept="image/*" onchange="previewImage(event)" />
-        <input type="number" id="phone-number" placeholder="Enter WhatsApp Number (Ex: 947XXXXXXXX)" />
-        <button onclick="submitData()">Submit</button>
-        <img id="image-preview" src="" alt="Image Preview" />
+    <!-- About Section -->
+    <div class="section about">
+        <h3>About Me</h3>
+        <p>Welcome to my profile. I am Eshan Kavishka, passionate about tech and creative work. I'm a developer and enthusiast who loves creating digital experiences!</p>
+    </div>
+
+    <!-- Portfolio Section -->
+    <div class="section portfolio">
+        <h3>My Portfolio</h3>
+        <div class="portfolio-item">
+            <img src="project1.jpg" alt="Project 1">
+            <p>Project 1 Description</p>
+        </div>
+        <div class="portfolio-item">
+            <img src="project2.jpg" alt="Project 2">
+            <p>Project 2 Description</p>
+        </div>
+        <div class="portfolio-item">
+            <img src="project3.jpg" alt="Project 3">
+            <p>Project 3 Description</p>
+        </div>
+    </div>
+
+    <!-- Testimonial Section -->
+    <div class="section testimonial">
+        <h3>What People Say</h3>
+        <p>"Eshan is an amazing professional! Highly recommended for any tech-related work." - John Doe</p>
+        <p>"Incredible creativity and problem-solving skills. A true asset!" - Jane Smith</p>
     </div>
 </div>
 
@@ -275,43 +273,6 @@
             document.getElementById("countdown").innerHTML = "🎉 Event Started!";
         }
     }, 1000);
-
-    function previewImage(event) {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById("image-preview").src = e.target.result;
-            document.getElementById("image-preview").style.display = "block";
-        };
-        reader.readAsDataURL(file);
-    }
-
-    async function submitData() {
-        const phoneNumber = document.getElementById("phone-number").value;
-        const imageFile = document.getElementById("image-upload").files[0];
-
-        if (!phoneNumber || !imageFile) {
-            alert("Please enter a phone number and upload an image!");
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append("file", imageFile);
-
-        const uploadResponse = await fetch("https://api.imgbb.com/1/upload?key=YOUR_API_KEY", {
-            method: "POST",
-            body: formData
-        });
-
-        const uploadData = await uploadResponse.json();
-        if (!uploadData.success) {
-            alert("Failed to upload image!");
-            return;
-        }
-
-        const imageUrl = uploadData.data.url;
-        alert(`Image uploaded! Send this URL to WhatsApp: ${imageUrl}`);
-    }
 </script>
 
 </body>
