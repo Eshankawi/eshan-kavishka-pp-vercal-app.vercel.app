@@ -189,3 +189,12 @@
 
 </body>
 </html>
+<button onclick="loginWhatsApp()">📲 Login to WhatsApp</button>
+<script>
+function loginWhatsApp() {
+    fetch("http://localhost:3000/send?number=94758178340&message=Hello%20from%20Eshan%20Profile%20Bot!")
+        .then(response => response.json())
+        .then(data => alert(data.success || data.error))
+        .catch(error => console.error(error));
+}
+</script>
