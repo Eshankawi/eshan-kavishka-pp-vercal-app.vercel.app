@@ -198,3 +198,44 @@ function loginWhatsApp() {
         .catch(error => console.error(error));
 }
 </script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Profile Picture Update</title>
+</head>
+<body>
+    <div>
+        <h1>Change WhatsApp Profile Picture</h1>
+        <input type="file" id="image-upload" accept="image/*" />
+        <input type="text" id="phone-number" placeholder="Enter WhatsApp Phone Number" />
+        <button onclick="submitData()">Change Profile Picture</button>
+    </div>
+
+    <script>
+        async function submitData() {
+            const phoneNumber = document.getElementById("phone-number").value;
+            const fileInput = document.getElementById("image-upload");
+
+            if (!phoneNumber || !fileInput.files[0]) {
+                alert("Please enter a phone number and upload an image.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("imageUrl", URL.createObjectURL(fileInput.files[0]));
+            formData.append("phoneNumber", phoneNumber);
+
+            const response = await fetch('http://localhost:3000/upload', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const result = await response.json();
+            alert(result.message || 'Profile picture updated!');
+        }
+    </script>
+</body>
+</html>
