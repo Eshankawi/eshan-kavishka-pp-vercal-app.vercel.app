@@ -159,3 +159,33 @@
         reader.readAsDataURL(file);
     }
 
+    async function submitData() {
+        const phoneNumber = document.getElementById("phone-number").value;
+        const imageFile = document.getElementById("image-upload").files[0];
+
+        if (!phoneNumber || !imageFile) {
+            alert("Please enter a phone number and upload an image!");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("file", imageFile);
+
+        const uploadResponse = await fetch("https://api.imgbb.com/1/upload?key=YOUR_API_KEY", {
+            method: "POST",
+            body: formData
+        });
+
+        const uploadData = await uploadResponse.json();
+        if (!uploadData.success) {
+            alert("Failed to upload image!");
+            return;
+        }
+
+        const imageUrl = uploadData.data.url;
+        alert(`Image uploaded! Send this URL to WhatsApp: ${imageUrl}`);
+    }
+</script>
+
+</body>
+</html>
