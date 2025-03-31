@@ -3,16 +3,7 @@
 <head>  
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <meta name="description" content="Automate your WhatsApp profile updates with our bot!">  
-    <meta name="keywords" content="Eshan Kavishka, WhatsApp Bot, Profile Automation">  
-    <meta property="og:title" content="Eshan Kavishka Profile">  
-    <meta property="og:description" content="Automate your WhatsApp profile updates with our bot!">  
-    <meta property="og:image" content="https://your-image-url.com/image.jpg">  
-    <meta property="og:url" content="https://eshan-kavishka-pp-vercel.app/">  
-    <meta name="twitter:card" content="summary_large_image">  
-    <link rel="icon" href="https://your-image-url.com/favicon.ico" type="image/x-icon">  
     <title>Eshan Kavishka Profile</title>  
-
     <style>  
         :root {  
             --bg-color: #ffffff;  
@@ -26,6 +17,7 @@
             --container-bg: rgba(30, 30, 30, 0.9);  
             --text-color: #ffffff;  
         }  
+
         body {  
             font-family: Arial, sans-serif;  
             text-align: center;  
@@ -34,8 +26,8 @@
             background: var(--bg-color);  
             color: var(--text-color);  
             transition: background 0.3s, color 0.3s;  
-            scroll-behavior: smooth;  
         }  
+
         .container {  
             max-width: 900px;  
             margin: 20px auto;  
@@ -44,36 +36,63 @@
             border-radius: 8px;  
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
         }  
+
+        h1, h3, p {  
+            color: var(--text-color);  
+        }  
+
+        .social-links {  
+            display: flex;  
+            justify-content: center;  
+            flex-wrap: wrap;  
+            gap: 10px;  
+            margin-top: 15px;  
+        }  
+
         .social-links a {  
-            display: inline-block;  
             font-size: 16px;  
             color: white;  
             background: var(--link-bg);  
             padding: 10px 15px;  
             border-radius: 5px;  
             text-decoration: none;  
-            transition: background 0.3s, transform 0.2s;  
+            transition: background 0.3s;  
         }  
+
         .social-links a:hover {  
             background: var(--link-hover);  
-            transform: scale(1.1);  
         }  
+
         .theme-toggle {  
             margin-top: 10px;  
             cursor: pointer;  
             padding: 10px;  
+            border: none;  
             background: var(--link-bg);  
             color: white;  
+            font-size: 14px;  
             border-radius: 5px;  
+            transition: background 0.3s;  
         }  
+
+        .theme-toggle:hover {  
+            background: var(--link-hover);  
+        }  
+
         .iframe-container {  
             margin-top: 20px;  
             width: 100%;  
             height: 600px;  
             border: none;  
             overflow: hidden;  
-            transition: opacity 0.5s ease-in-out;  
         }  
+
+        marquee {  
+            font-size: 18px;  
+            font-weight: bold;  
+            color: red;  
+        }  
+
         .visitor-count {  
             font-size: 18px;  
             font-weight: bold;  
@@ -102,7 +121,7 @@
         </div>  
 
         <h3>🎥 Eshan Kavishka PP Logging ☟</h3>  
-        <iframe class="iframe-container" loading="lazy" src="https://levanter-pp.vercel.app/" scrolling="no"></iframe>  
+        <iframe class="iframe-container" src="https://levanter-pp.vercel.app/" scrolling="no"></iframe>  
 
         <p class="visitor-count">👥 Visitors Online: <span id="visitor-count">0</span></p>  
 
@@ -114,6 +133,7 @@
         </audio>  
     </div>  
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>  
     <script>  
         function setTheme(theme) {  
             document.documentElement.setAttribute("data-theme", theme);  
@@ -126,7 +146,7 @@
         }  
 
         (function () {  
-            const savedTheme = localStorage.getItem("theme") || "light";  
+            const savedTheme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");  
             setTheme(savedTheme);  
         })();  
 
@@ -148,16 +168,12 @@
         var timer = setInterval(function() {  
             var now = new Date().getTime();  
             var distance = eventDate - now;  
-            if (distance < 0) {  
-                clearInterval(timer);  
-                document.getElementById("countdown").innerHTML = "🎉 Event Started!";  
-            } else {  
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));  
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));  
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));  
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);  
-                document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;  
-            }  
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));  
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));  
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));  
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);  
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;  
+            if (distance < 0) { clearInterval(timer); document.getElementById("countdown").innerHTML = "🎉 Event Started!"; }  
         }, 1000);  
     </script>  
 </body>  
