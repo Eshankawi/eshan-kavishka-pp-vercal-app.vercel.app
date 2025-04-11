@@ -3,13 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WhatsApp Profile Picture Updater</title>
+  <title>WhatsApp Profile Picture Setter</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Update WhatsApp Profile Picture</h1>
-  <input type="file" id="imageInput" accept="image/*" />
-  <button id="uploadButton">Upload and Generate QR</button>
-  <div id="qrCodeContainer"></div>
+  <div class="container">
+    <div class="instructions">
+      <p>To set WhatsApp profile picture:</p>
+      <ol>
+        <li>Upload image</li>
+        <li>Enter WhatsApp number</li>
+        <li>Login using linked phone number and enter time code</li>
+        <li>Wait</li>
+      </ol>
+    </div>
+
+    <div class="upload-section">
+      <p><strong>Profile Photo</strong></p>
+      <img id="preview" alt="Profile preview" />
+      <input type="file" id="fileInput" accept="image/*" />
+      <input type="text" id="whatsappNumber" placeholder="Enter WhatsApp Number" />
+      <button onclick="login()">Login</button>
+    </div>
+
+    <div class="links">
+      <a href="#">Support the Developer</a>
+      <a href="#">Telegram Group</a>
+    </div>
+
+    <footer>Made by LYfE with <span class="heart">♥</span></footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
