@@ -1,45 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Profile Picture Updater</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WhatsApp Profile Picture Updater</title>
 </head>
 <body>
-    <h1>Upload Profile Picture</h1>
-    <input type="file" id="fileInput" accept="image/*">
-    <button id="uploadBtn">Upload</button>
-    <div id="qrCodeContainer">
-        <!-- QR code will be displayed here -->
-    </div>
+  <h1>Update WhatsApp Profile Picture</h1>
+  <input type="file" id="imageInput" accept="image/*" />
+  <button id="uploadButton">Upload and Generate QR</button>
+  <div id="qrCodeContainer"></div>
 
-    <script>
-        const uploadBtn = document.getElementById('uploadBtn');
-        const fileInput = document.getElementById('fileInput');
-        const qrCodeContainer = document.getElementById('qrCodeContainer');
-
-        uploadBtn.addEventListener('click', async () => {
-            if (fileInput.files.length > 0) {
-                const formData = new FormData();
-                formData.append('file', fileInput.files[0]);
-
-                const response = await fetch('/upload', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                if (response.ok) {
-                    // Display QR code after file upload
-                    const qrCodeData = await response.json();
-                    const qrCodeImage = new Image();
-                    qrCodeImage.src = qrCodeData.qrCodeUrl;
-                    qrCodeContainer.innerHTML = ''; // Clear previous QR code
-                    qrCodeContainer.appendChild(qrCodeImage);
-                }
-            } else {
-                alert('Please select an image.');
-            }
-        });
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
