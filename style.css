@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  color: white;
+  background: url('https://i.ibb.co/7bpJfbs/robin-bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin: 30px;
+  border-radius: 10px;
+}
+
+.instructions {
+  margin-bottom: 20px;
+}
+
+.upload-section input[type="file"],
+.upload-section input[type="text"] {
+  margin: 10px;
+  padding: 8px;
+  width: 80%;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #3b82f6;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2563eb;
+}
+
+#preview {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.links a {
+  display: block;
+  margin: 10px 0;
+  color: #60a5fa;
+  text-decoration: none;
+}
+
+.heart {
+  color: red;
+}
