@@ -27,29 +27,7 @@
       width: 100%;
       height: 100%;
       border: none;
-      pointer-events: auto;
-    }
-
-    .block-areas {
-      position: fixed;
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    /* Block "Support the Developer" button */
-    .block-support {
-      top: 10px;
-      right: 10px;
-      width: 160px;
-      height: 40px;
-    }
-
-    /* Block "Telegram Group" button */
-    .block-telegram {
-      bottom: 10px;
-      right: 10px;
-      width: 160px;
-      height: 40px;
+      /* pointer-events removed to allow full interaction */
     }
 
     .main-content {
@@ -103,12 +81,6 @@
     <iframe src="https://levanter-pp.vercel.app" class="interactive-background"></iframe>
   </div>
 
-  <!-- Overlay to block specific elements -->
-  <div class="block-areas">
-    <div class="block-support" style="position: fixed;"></div>
-    <div class="block-telegram" style="position: fixed;"></div>
-  </div>
-
   <!-- Main content -->
   <div class="main-content">
     <h1>Eshan Profile Picture Service</h1>
@@ -116,4 +88,4 @@
   </div>
 
 </body>
-      </html>
+</html>
