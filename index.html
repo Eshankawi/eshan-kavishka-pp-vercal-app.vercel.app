@@ -1,15 +1,23 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
+  <title>Framed App</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="background">
-    <iframe src="https://levanter-pp.vercel.app" class="iframe-background"></iframe>
+  <div class="container">
+    <iframe src="https://levanter-pp.vercel.app" class="iframe" allow="camera; clipboard-write;"></iframe>
+    
+    <!-- Transparent overlay with holes -->
+    <div class="overlay">
+      <!-- Holes (touch-enabled) using empty divs -->
+      <div class="hole login-box"></div>
+      <div class="hole image-box"></div>
+    </div>
   </div>
 
 </body>
