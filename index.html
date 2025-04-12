@@ -1,84 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eshan WhatsApp Profile Uploader</title>
-  <style>
-    body { font-family: Arial; padding: 40px; background: #f4f4f4; text-align: center; }
-    form { background: white; padding: 20px; border-radius: 10px; display: inline-block; }
-    input, button { display: block; margin: 10px auto; padding: 10px; width: 80%; }
-    #status { margin-top: 20px; font-weight: bold; color: green; }
-    #qrPreview { margin-top: 20px; }
-    #qrPreview img { max-width: 300px; border: 1px solid #ccc; padding: 5px; background: white; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h2>Upload WhatsApp Profile Picture</h2>
-  <form id="uploadForm">
-    <input type="file" name="image" required accept="image/*" />
-    <input type="text" name="phone" placeholder="Enter your WhatsApp number" required />
-    <button type="submit">Login & Upload</button>
-  </form>
-  <div id="status"></div>
-  <div id="qrPreview"></div>
-  <div id="continueDiv" style="display:none;">
-    <button id="continueBtn">I scanned QR code</button>
+
+  <div class="background">
+    <iframe src="https://levanter-pp.vercel.app" class="iframe-background"></iframe>
   </div>
 
-  <script>
-    const form = document.getElementById('uploadForm');
-    const statusDiv = document.getElementById('status');
-    const qrPreview = document.getElementById('qrPreview');
-    const continueDiv = document.getElementById('continueDiv');
-    const continueBtn = document.getElementById('continueBtn');
-
-    let currentSessionId = null;
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      statusDiv.textContent = 'Uploading... Please wait';
-      qrPreview.innerHTML = '';
-      continueDiv.style.display = 'none';
-
-      const formData = new FormData(form);
-      const response = await fetch('http://localhost:3000/upload', {
-        method: 'POST',
-        body: formData
-      });
-
-      const result = await response.json();
-
-      if (result.qr) {
-        qrPreview.innerHTML = `<img src="data:image/png;base64,${result.qr}" alt="QR Code" />`;
-        currentSessionId = result.sessionId;
-        statusDiv.textContent = result.message || 'Scan the QR code';
-        continueDiv.style.display = 'block';
-      } else {
-        statusDiv.textContent = 'Something went wrong';
-      }
-    });
-
-    continueBtn.addEventListener('click', async () => {
-      if (!currentSessionId) return;
-      statusDiv.textContent = 'Checking login and uploading image...';
-
-      const response = await fetch('http://localhost:3000/continue', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sessionId: currentSessionId })
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        statusDiv.textContent = result.message;
-        qrPreview.innerHTML = '';
-        continueDiv.style.display = 'none';
-      } else {
-        statusDiv.textContent = result.error || 'Upload failed';
-      }
-    });
-  </script>
 </body>
 </html>

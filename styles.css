@@ -1,0 +1,55 @@
+/* Make sure the page covers full screen */
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Container for background */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Keep background behind content */
+}
+
+/* Style for the iframe */
+.iframe-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Responsive Styles */
+
+/* Desktop (Screen width above 1200px) */
+@media (min-width: 1200px) {
+  .iframe-background {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+/* Tablet (Screen width between 600px to 1200px) */
+@media (min-width: 600px) and (max-width: 1199px) {
+  .iframe-background {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+/* Mobile (Screen width below 600px) */
+@media (max-width: 599px) {
+  .iframe-background {
+    background-size: cover;
+    background-position: center;
+  }
+}
