@@ -57,3 +57,15 @@ body, html {
   height: 150px;
   transform: translate(-50%, -50%);
 }
+
+/* Block bottom ad buttons or other parts you don't want to be clickable */
+.block-ads {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px; /* adjust height if needed */
+  background: transparent;
+  z-index: 4;
+  pointer-events: auto; /* block touch */
+}
