@@ -13,7 +13,7 @@ html, body {
   background: transparent;
 }
 
-/* Container for iframe and content */
+/* Container for iframe */
 .background-container {
   position: fixed;
   width: 100%;
@@ -33,9 +33,9 @@ html, body {
   border: none;
 }
 
-/* Content over background */
-.content {
-  position: absolute;
+/* Fixed content over background */
+.fixed-content {
+  position: fixed;
   top: 30px;
   left: 50%;
   transform: translateX(-50%);
@@ -43,6 +43,7 @@ html, body {
   text-align: center;
   color: white;
   padding: 10px 20px;
+  pointer-events: none;
 }
 
 /* Welcome text */
