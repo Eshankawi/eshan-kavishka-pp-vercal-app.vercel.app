@@ -1,17 +1,72 @@
 /* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-{ margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  background: transparent;
+}
 
+/* Container for iframe and content */
+.background-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 
-html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Poppins', sans-serif; }
+/* Fullscreen iframe */
+.levanter-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: auto;
+  z-index: 0;
+  border: none;
+}
 
-/* Container for iframe and content */ .background-container { position: fixed; width: 100%; height: 100%; overflow: hidden; }
+/* Content over background */
+.content {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  text-align: center;
+  color: white;
+  padding: 10px 20px;
+}
 
-/* Fullscreen iframe */ .levanter-iframe { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: auto; z-index: 0; border: none; }
+/* Welcome text */
+.welcome-text {
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+  animation: fadeIn 1.2s ease-in-out;
+}
 
-/* Content over background */ .content { position: absolute; top: 30px; left: 50%; transform: translateX(-50%); z-index: 5; text-align: center; color: white; }
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-/* Welcome text */ .welcome-text { font-size: 1.6rem; font-weight: 600; font-family: 'Poppins', sans-serif; }
-
-/* Responsive */ @media (max-width: 768px) { .welcome-text { font-size: 1.3rem; } } @media (max-width: 480px) { .welcome-text { font-size: 1.1rem; } }
-
+/* Responsive */
+@media (max-width: 768px) {
+  .welcome-text {
+    font-size: 1.3rem;
+  }
+}
+@media (max-width: 480px) {
+  .welcome-text {
+    font-size: 1.1rem;
+  }
+}
